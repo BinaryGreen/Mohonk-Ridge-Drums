@@ -1,0 +1,142 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: black;
+    padding-bottom: 110px;
+}
+
+.links {
+    margin: auto;
+    float: right;
+    margin-right: 200px;
+}
+
+h1 {
+    color: white;
+    font-size: 40px;
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+#navbutton {
+    /* background-color: rgb(47, 47, 47); */
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    padding: 15px;
+    margin: 5px;
+    border: 3px solid black;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+
+#navbutton:hover {
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+.content {
+    padding-top: 50px;
+    padding-bottom: 150px;
+    background: white;
+    background-image: radial-gradient(black 1px, transparent 0);
+    background-size: 50px 50px;
+    background-position: -19px -19px;
+}
+
+.content2 {
+    padding-bottom: 10px;
+}
+
+.formbox {
+    background-color: white;
+    margin: 95px auto;
+    width: 30%;
+    padding: 10px;
+    padding-bottom: 40px;
+    border: 2px solid rgb(132, 132, 132);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    width: 400px;
+    margin-bottom: 120px;
+}
+
+.boxheading {
+    color: black;
+    font-size: 32px;
+    margin: 10px auto;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 3px;
+    margin-bottom: 0px;
+}
+
+label {
+    display: inline-block;
+    text-align: right;
+    width: 100px;
+}
+
+input {
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    border: 1px solid steelblue;
+    display: inline-block;
+    width: 200px;
+  }
+
+input[type="submit"] {
+    border-radius: 5px;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 0 5px grey;
+    background-color: steelblue;
+    border: 2px solid steelblue;
+}
+
+input[type="submit"]:hover {
+    background-color: rgba(70, 130, 180, 15%);
+    color: steelblue;
+}
+
+.footer {
+    background-color: black;
+    bottom: 0px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.contactinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact {
+    color: white;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles\form.css">
+    <title>Create new account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous">
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet"
+    >
+    <link 
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    >
+</head>
+<body>
+    <div class="navbar">
+        <!-- <img src="#" alt="" class="logo"> -->
+        <h1>Mohonk Ridge Drums</h1> <!-- Placeholder for logo-->
+        <div class="links">
+            <a href="index.html"><button type="button" id="navbutton">Home</button></a>
+            <a href="shop.html"><button type="button" id="navbutton">Shop</button></a>
+            <a href="about.html"><button type="button" id="navbutton">About</button></a>
+            <a href="loginor.html"><button type="button" id="navbutton">Account</button></a> <!-- If already logged in, go to mypage.html-->
+        </div>
+    </div>
+    <div class="content content2">
+        <div class="formbox">
+            <form id="createaccount">
+                <h1 class="boxheading">Create Account</h1> <br>
+                <label for="fname">First Name</label>
+                <input type="text" name="fname" id="fname" placeholder="First Name" required> <br>
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" id="lname" placeholder="Last Name" required> <br>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email" required> <br>
+                <label for="pswd">Password</label>
+                <input type="password" name="pswd" id="pswd" placeholder="Password" required> <br>
+                <label for="bdate">Birthdate</label>
+                <input type="date" name="bdate" id="bdate" required> <br>
+                <label for="phone">Phone #</label>
+                <input 
+                    type="tel" name="phone" id="phone"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    placeholder="XXX-XXX-XXXX" required> <br>
+                <label for="address">Address</label>
+                <input 
+                type="text" id="address" placeholder="Street Address, City, State, Postal"
+                required> <br>
+                <input type="submit" value="Create account">
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="contactinfo">
+            <p id="contact"><b>Store: </b>123 Main Street, New Paltz 12561 | </p>
+            <p id="contact"><b>Phone: </b>123-4567 | </p>
+            <p id="contact"><b>Email: </b>mhrdrums@gmail.com |</p>
+            <p id="contact"><b>Hours: </b>Monday-Saturday: 11AM-5PM. Closed Sunday.</p>
+        </div>
+        <p id="contact" class="copyright">© Mohonk Ridge Drums. All Rights Reserved.</p>
+    </div>
+    <script defer src="scripts/createaccount.js"></script>
+    <noscript>Your browser does not support JavaScript.</noscript>
+</body>
+</html>

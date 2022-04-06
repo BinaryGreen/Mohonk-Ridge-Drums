@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="styles/shop.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous">
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet"
+    >
+    <link 
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    >
+</head>
+<body>
+    <div class="navbar">
+        <!-- <img src="#" alt="" class="logo"> -->
+        <h1>Mohonk Ridge Drums</h1> <!-- Placeholder for logo-->
+        <div class="links">
+            <a href="index.html"><button type="button" id="navbutton">Home</button></a>
+            <a href="shop.html"><button type="button" id="navbutton">Shop</button></a>
+            <a href="about.html"><button type="button" id="navbutton">About</button></a>
+            <a href="loginor.html"><button type="button" id="navbutton">Account</button></a> <!-- If already logged in, go to mypage.html-->
+        </div>
+    </div>
+    <div class="content">
+        <p class="headingtext"><span class="headingspan">Custom Drum Order</span></p>
+        <div class="shopbox">
+            <form class="shop" id="drumForm">
+                <label for="material"><b>Shell Material</b></label>
+                <select id="material" required>
+                    <option value="Maple">Maple</option>
+                    <option value="Birch">Birch</option>
+                    <option value="Beech">Beech</option>
+                    <option value="Mahogany">Mahogany</option>
+                    <option value="Oak">Oak</option>
+                </select>
+                <label for="construction"><b>Shell Construction</b></label>
+                <select id="construction" required>
+                    <option value="Ply">Ply</option>
+                    <option value="Segment">Segment</option>
+                    <option value="Steambent">Steambent</option>
+                    <option value="Stave">Stave</option>
+                </select>
+                <label for="diameter"><b>Diameter (inches)</b></label>
+                <select id="diameter" required>
+                    <option value="8">8</option><option value="10">10</option>
+                    <option value="12">12</option><option value="13">13</option>
+                    <option value="14">14</option><option value="15">15</option>
+                    <option value="16">16</option><option value="18">18</option>
+                    <option value="20">20</option><option value="22">22</option>
+                    <option value="24">24</option><option value="26">26</option>
+                    <option value="28">28</option>
+                </select>
+                <label for="depth"><b>Depth (inches)</b></label>
+                <input id="depth" type="text" placeholder='Depth (min 3 1/2", max 18")' required>
+                <label for="thickness"><b>Thickness (inches)</b></label>
+                <input id="thickness" type="text" placeholder='Depth (min 1/4", max 4")' required>
+                <label for="finish"><b>Finish</b></label>
+                <select id="finish" required>
+                    <option value="wraps" disabled>--WRAPS--</option><option value="Black Sparkle">Black Sparkle</option>
+                    <option value="Blue Glitter">Blue Glitter</option><option value="Green Sparkle">Green Sparkle</option>
+                    <option value="Blue White Pearl">Blue White Pearl</option><option value="Red Glitter">Red Glitter</option>
+                    <option value="Silver Sparkle">Silver Sparkle</option><option value="lacquers" disabled>--LACQUERS--</option>
+                    <option value="Black">Black</option><option value="White">White</option>
+                    <option value="Red">Red</option><option value="Blue">Blue</option>
+                    <option value="Green">Green</option><option value="Purple">Purple</option>
+                    <option value="Orange">Orange</option>
+                    <option value="veneer" disabled>--VENEER--</option><option value="Shell Material">Shell Material</option>
+                </select>
+                <label for="hardware"><b>Hardware</b></label>
+                <select id="hardware" required>
+                    <option value="Chrome">Chrome</option><option value="Satin Chrome">Satin Chrome</option>
+                    <option value="Black Nickel">Black Nickel</option><option value="Brass">Brass</option>
+                    <option value="Gold">Gold</option>
+                </select>
+                <p id="errmsg"></p>
+                <input type="submit" value="+ Add Drum">
+            </form>
+            <div class="drumlist" id="drumlist"></div>
+            <a href="checkout.html"><input id="nextbutton" class="nextbutton" type="submit" value="Next >"></a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="contactinfo">
+            <p id="contact"><b>Store: </b>123 Main Street, New Paltz 12561 | </p>
+            <p id="contact"><b>Phone: </b>123-4567 | </p>
+            <p id="contact"><b>Email: </b>mhrdrums@gmail.com |</p>
+            <p id="contact"><b>Hours: </b>Monday-Saturday: 11AM-5PM. Closed Sunday.</p>
+        </div>
+        <p id="contact" class="copyright">© Mohonk Ridge Drums. All Rights Reserved.</p>
+    </div>
+    <script defer src="scripts/shop.js"></script>
+    <noscript>Your browser does not support JavaScript.</noscript>
+</body>
+</html>

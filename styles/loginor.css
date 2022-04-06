@@ -1,0 +1,140 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: black;
+    padding-bottom: 110px;
+}
+
+.links {
+    margin: auto;
+    float: right;
+    margin-right: 200px;
+}
+
+h1 {
+    color: white;
+    font-size: 40px;
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+#navbutton {
+    /* background-color: rgb(47, 47, 47); */
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    padding: 15px;
+    margin: 5px;
+    border: 3px solid black;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+
+#navbutton:hover {
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+.content {
+    padding-top: 50px;
+    padding-bottom: 150px;
+    background: white;
+    background-image: radial-gradient(black 1px, transparent 0);
+    background-size: 50px 50px;
+    background-position: -19px -19px;
+}
+
+.buttonsbox {
+    background-color: white;
+    margin: 95px auto;
+    width: 30%;
+    padding: 10px;
+    padding-bottom: 80px;
+    border: 2px solid rgb(132, 132, 132);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+}
+
+.boxheading {
+    color: black;
+    font-size: 32px;
+    margin: 10px auto;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 25px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginbutton, #newbutton {
+    border-radius: 5px;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 0 5px grey;
+}
+
+#loginbutton {
+    background-color: steelblue;
+    border: 2px solid steelblue;
+}
+
+#newbutton {
+    background-color: rgba(110, 185, 110, 100%);
+    border: 2px solid rgba(110, 185, 110, 100%);
+}
+
+#loginbutton:hover {
+    background-color: rgba(70, 130, 180, 15%);
+    color: steelblue;
+}
+
+#newbutton:hover {
+    background-color: rgba(110, 185, 110, 15%);
+    color: rgba(110, 185, 110, 100%);
+}
+
+.footer {
+    background-color: black;
+    bottom: 0px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.contactinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact {
+    color: white;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

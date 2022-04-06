@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: black;
+    padding-bottom: 110px;
+}
+
+.links {
+    margin: auto;
+    float: right;
+    margin-right: 200px;
+}
+
+h1 {
+    color: white;
+    font-size: 40px;
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+#navbutton {
+    /* background-color: rgb(47, 47, 47); */
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    padding: 15px;
+    margin: 5px;
+    border: 3px solid black;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+
+#navbutton:hover {
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+.content {
+    padding-top: 50px;
+    padding-bottom: 150px;
+    background: white;
+    background-image: radial-gradient(black 1px, transparent 0);
+    background-size: 50px 50px;
+    background-position: -19px -19px;
+}
+
+.headingspan {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 26px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+}
+
+.headingtext {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 45px;
+}
+
+.shopbox {
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    margin: auto;
+    width: 50%;
+}
+
+.shop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    padding-top: 10px;
+    padding-bottom: 25px;
+    font-size: 24px;
+}
+
+select {
+    width: 50%;
+    margin-bottom: 25px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+input[type=text] {
+    width: 50%;
+    margin-bottom: 25px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+input[type=text], select {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+#errmsg {
+    color: red;
+    font-weight: bold;
+    padding-bottom: 6px;
+}
+
+input[type=submit] {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    transition-duration: 0.4s;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    border: 2px solid black;
+    width: 300px;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(0, 0, 0);
+    border: 2px solid white;
+}
+
+.nextbutton {
+    margin-left: 600px;
+    width: 300px;
+}
+
+.drumlist {
+    padding-bottom: 30px;
+}
+
+.drumitem {
+    background-color: rgb(189, 189, 189);
+    padding: 8px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.drumitemcontent {
+    font-size: 18px;
+}
+
+.footer {
+    background-color: black;
+    bottom: 0px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.contactinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact {
+    color: white;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
