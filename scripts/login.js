@@ -1,7 +1,11 @@
 class User {
     constructor(email, pswd) { // login to account
         this.email = email;
+<<<<<<< HEAD
         this.pswd = pswd;
+=======
+        this.pswd = pswd; 
+>>>>>>> d953cdd4484b4416fbe605708a877ecfb2c83286
     }
     
     // getters
