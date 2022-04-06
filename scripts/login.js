@@ -1,7 +1,7 @@
 class User {
-    constructor(email, pswd) { // new account
+    constructor(email, pswd) { // login to account
         this.email = email;
-        this.pswd = pswd; // add password checker function
+        this.pswd = pswd; 
     }
     
     // getters
