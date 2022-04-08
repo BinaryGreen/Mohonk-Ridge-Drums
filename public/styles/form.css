@@ -115,6 +115,10 @@ input[type="submit"]:hover {
     color: steelblue;
 }
 
+#errormsg {
+    color: red;
+}
+
 .footer {
     background-color: black;
     bottom: 0px;

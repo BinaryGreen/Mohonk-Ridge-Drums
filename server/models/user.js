@@ -37,4 +37,12 @@ const users = [
 
 let getUsers = () => users;
 
-module.exports = { getUsers };
+async function login(email, password) {
+    const user = users.filter((e) => e.email === email);
+    if(!user[0]) throw Error('User not found');
+    if(user[0].password !== password) throw Error('The password you entered is not correct');
+
+    return user[0];
+};
+
+module.exports = { getUsers, login };
