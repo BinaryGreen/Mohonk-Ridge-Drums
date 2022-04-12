@@ -61,7 +61,8 @@ function login (e) {
     postData('http://localhost:3000/users/login', {email: email, password: password})
     .then((data) => {
         if(!data.message) {
-            // window.location.href = "index.html"; <------------- link to account page (wip)
+            setCurrentUser(data);
+            window.location.href = 'account.html'
         }
     })
     .catch((error) => {
