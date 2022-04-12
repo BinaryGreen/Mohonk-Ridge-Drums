@@ -6,12 +6,7 @@ const users = [
             fname: 'Dan',
             lname: 'Mango'
         },
-        shippingAddress: {
-            streetaddress: '123 Main Street',
-            city: 'New Paltz',
-            state: 'New York',
-            post: 12561
-        },
+        address: '123 Main Street, New Paltz, New York 12561',
         password: 'banana',
         birthdate: '2000-02-09',
         phone: '123-456-7890'
@@ -23,12 +18,7 @@ const users = [
             fname: 'Johnny',
             lname: 'Espresso'
         },
-        shippingAddress: {
-            streetaddress: '60 West Boulevard',
-            city: 'Coffeeville',
-            state: 'New York',
-            post: 03045
-        },
+        address: '60 West Boulevard, Coffeeville, New York, 03045',
         password: 'ilikecoffee',
         birthdate: '1975-07-15',
         phone: '333-712-9140'
@@ -39,10 +29,32 @@ let getUsers = () => users;
 
 async function login(email, password) {
     const user = users.filter((e) => e.email === email);
-    if(!user[0]) throw Error('User not found');
+    if(!user[0]) throw Error('Email not found');
     if(user[0].password !== password) throw Error('The password you entered is not correct');
 
     return user[0];
 };
 
-module.exports = { getUsers, login };
+function register(user) {
+    const e = userExists(user.email);
+    if(e.length > 0) throw Error ('Email already exists');
+
+    const newUser = {
+        userId: users[user.length - 1].user.Id + 1,
+        email: user.email,
+        fname: user.fname,
+        lname: user.lname,
+        address: user.address,
+        password: user.password,
+        birthdate: user.birthdate,
+        phone: user.phone
+    }
+    users.push(newUser);
+    return newUser;
+}
+
+function userExists(email) {
+    return users.filter((e) => e.email === email);
+}
+
+module.exports = { getUsers, login, register };

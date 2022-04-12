@@ -18,28 +18,47 @@ async function postData(url = '', data = {}) {
     }
 }
 
-class User {
-    constructor(email, pswd) { // login to account
-        this.email = email;
-        this.pswd = pswd;
-    }
-    
-    // getters
-    getEmail = () => this.email;
-    getPswd = () => this.pswd;
-
-    //setters
-    setEmail = (email) => this.email = email;
-    setPswd = (password) => this.pswd = password;
+function setCurrentUser(user) {
+    localStorage.setItem('user', JSON.stringify(user));
 }
+
+function removeCurrentUser() {
+    localStorage.removeItem('user');
+}
+
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('user'));
+}
+
+// logout button listener on account.html
+
+function logout() {
+    removeCurrentUser();
+    window.location.href = "index.html";
+}
+
+class User {
+    constructor(fname, lname, email, password, birthdate, phone, address) { // new account
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password; // add password checker function
+        this.birthdate = birthdate;
+        this.phone = phone;
+        this.address = address;
+    }
+}
+
+const loginform = document.getElementById('login');
+if (loginform) loginform.addEventListener('submit', login);
 
 function login (e) {
     e.preventDefault();
 
     const email = document.getElementById('email').value;
-    const pswd = document.getElementById('pswd').value;
+    const password = document.getElementById('pswd').value;
 
-    postData('http://localhost:3000/users/login', {email: email, password: pswd})
+    postData('http://localhost:3000/users/login', {email: email, password: password})
     .then((data) => {
         if(!data.message) {
             // window.location.href = "index.html"; <------------- link to account page (wip)
@@ -53,5 +72,42 @@ function login (e) {
     });
 }
 
-const loginform = document.getElementById('login');
-loginform.addEventListener('submit', login);
+let registerform = document.getElementById('createaccount');
+if (registerform) registerform.addEventListener('submit', register);
+
+function register (e) {
+    e.preventDefault();
+
+    let fname = document.getElementById('fname').value;
+    let lname = document.getElementById('lname').value;
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('pswd').value;
+    let birthdate = document.getElementById('bdate').value;
+    let phone = document.getElementById('phone').value;
+    let address = document.getElementById('address').value;
+
+    const user = new User(fname, lname, email, password, birthdate, phone, address);
+    console.log(user);
+
+    postData('http://localhost:3000/users/register', {
+        email: user.email,
+        fname: user.fname,
+        lname: user.lname,
+        password: user.password,
+        birthdate: user.birthdate,
+        phone: user.phone,
+        address: user.address
+    })
+    .then((data) => {
+        if(!data.message) {
+            setCurrentUser(data);
+            window.location.href="shop.html";
+        }
+    })
+    .catch((error) => {
+        const errText = error.message;
+        document.querySelector("#errormsg").innerHTML = errText;
+        document.getElementById('pswd').value = "";
+        console.log(`Error! ${errText}`)
+    });
+}

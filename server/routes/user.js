@@ -20,5 +20,14 @@ router.get('/', (req, res) => {
     }
 })
 
+.post('/register', (req, res) => {
+    try {
+        const user = User.register(req.body);
+        res.send({...user, password: undefined})
+    } catch(error) {
+        res.status(401).send({message: error.message})
+    }
+})
+
 module.exports = router; 
 

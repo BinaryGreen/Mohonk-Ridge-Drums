@@ -42,6 +42,6 @@ function createAccount (e) {
     let phone = document.getElementById('phone').value;
     let address = document.getElementById('address').value;
 
-    const newuser = new User(fname, lname, email, pswd, bdate, phone, address);
-    console.log(newuser);
+    const user = new User(fname, lname, email, pswd, bdate, phone, address);
+    console.log(user);
 }
