@@ -1,4 +1,4 @@
-// checks if user is logged in. if so, changes 
+// checks if user is logged in. if so, changes href to redirect to account page
 
 const link = document.getElementById('account');
 const accountButton = document.querySelector('.account');
