@@ -7,6 +7,12 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.material-icons-outlined {
+    position: absolute;
+    top: 395px;
+    right: 675px;
+}
+
 .navbar {
     background-color: black;
     padding-bottom: 110px;
@@ -108,7 +114,7 @@ input[type=text], select {
             box-sizing: border-box;
 }
 
-#errmsg {
+#errmsg, #cartmsg {
     color: red;
     font-weight: bold;
     padding-bottom: 6px;
@@ -151,7 +157,8 @@ input[type=submit]:hover {
 }
 
 .drumitemcontent {
-    font-size: 18px;
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .footer {

@@ -17,8 +17,9 @@ class Drum {
 let form = document.getElementById('drumForm');
 let drums = document.getElementById('drumlist');
 let errmsg = document.getElementById('errmsg');
+let cart = [];
 
-form.addEventListener('submit', checkDimensions);
+if (form) form.addEventListener('submit', checkDimensions);
 
 function checkDimensions(e) { 
 
@@ -71,7 +72,26 @@ function addDrum() {
     drumitem.appendChild(drumitemcontent);
     drums.appendChild(drumitem);
     console.log(drums);
+    cart.push(drum);
 }
 
-// add event listener that checks if cart is empty before proceeding
+let nextbutton = document.getElementById('nextbutton');
+let tocart = document.getElementById('tocart');
+const carterr = 'There must be at least one drum in the cart.';
+
+if (nextbutton) nextbutton.addEventListener('click', goToCheckout);
+
+function goToCheckout(e) {
+    e.preventDefault();
+    cartmsg.innerHTML = '';
+
+    if (!localStorage.getItem('user')) {
+        window.location.href = "loginor.html"
+    }
+    if (cart.length === 0) {
+        cartmsg.innerHTML = carterr;
+    } else {
+        window.location.href = "checkout.html";
+    }
+}
 

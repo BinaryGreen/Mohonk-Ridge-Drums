@@ -13,7 +13,7 @@
         rel="stylesheet"
     >
     <link 
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
         rel="stylesheet"
     >
 </head>
@@ -40,6 +40,7 @@
                     <option value="Mahogany">Mahogany</option>
                     <option value="Oak">Oak</option>
                 </select>
+                <!-- <span class="material-icons-outlined">help</span> -->
                 <label for="construction"><b>Shell Construction</b></label>
                 <select id="construction" required>
                     <option value="Ply">Ply</option>
@@ -81,9 +82,10 @@
                 </select>
                 <p id="errmsg"></p>
                 <input type="submit" value="+ Add Drum">
+                <p id="cartmsg"></p>
             </form>
             <div class="drumlist" id="drumlist"></div>
-            <a href="checkout.html"><input id="nextbutton" class="nextbutton" type="submit" value="Next >"></a>
+            <a id="tocart" href="/"><input id="nextbutton" class="nextbutton" type="submit" value="Next >"></a>
         </div>
     </div>
     <div class="footer">
