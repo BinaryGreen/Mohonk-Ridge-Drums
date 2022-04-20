@@ -44,7 +44,7 @@ h1 {
 
 .content {
     padding-top: 50px;
-    padding-bottom: 150px;
+    padding-bottom: 200px;
     background: white;
     background-image: radial-gradient(black 1px, transparent 0);
     background-size: 50px 50px;
@@ -71,6 +71,59 @@ h1 {
     border-radius: 10px;
     margin: auto;
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.accountlink {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 24px;
+    text-decoration: none;
+    color: black;
+}
+
+.accountlink:hover {
+    text-decoration: underline;
+}
+
+#logoutbutton, #deleteaccount {
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 0 5px black;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 12px;
+}
+
+#logoutbutton {
+    background-color: steelblue;
+    border: 2px solid steelblue;
+}
+
+#logoutbutton:hover {
+    background-color: rgba(70, 130, 180, 15%);
+    color: steelblue;
+}
+
+#deleteaccount {
+    background-color: rgb(189, 68, 68);
+    border: 2px solid rgb(189, 68, 68);
+}
+
+#deleteaccount:hover {
+    background-color: rgba(138, 49, 49, 15%);
+    color: rgb(189, 68, 68);
 }
 
 .footer {

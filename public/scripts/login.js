@@ -88,7 +88,6 @@ function register (e) {
     let address = document.getElementById('address').value;
 
     const user = new User(fname, lname, email, password, birthdate, phone, address);
-    console.log(user);
 
     postData('http://localhost:3000/users/register', {
         email: user.email,
@@ -102,7 +101,7 @@ function register (e) {
     .then((data) => {
         if(!data.message) {
             setCurrentUser(data);
-            window.location.href="shop.html";
+            window.location.href="account.html";
         }
     })
     .catch((error) => {
@@ -112,3 +111,5 @@ function register (e) {
         console.log(`Error! ${errText}`)
     });
 }
+
+export default logout;

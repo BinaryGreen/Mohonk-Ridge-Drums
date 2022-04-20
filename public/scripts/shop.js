@@ -71,13 +71,14 @@ function addDrum() {
     drumitemcontent.appendChild(string);
     drumitem.appendChild(drumitemcontent);
     drums.appendChild(drumitem);
-    console.log(drums);
     cart.push(drum);
+    console.log(cart);
 }
 
 let nextbutton = document.getElementById('nextbutton');
 let tocart = document.getElementById('tocart');
 const carterr = 'There must be at least one drum in the cart.';
+const carterr2 = 'Maximum of 10 items exceeded. Please remove item(s) from cart.'
 
 if (nextbutton) nextbutton.addEventListener('click', goToCheckout);
 
@@ -90,7 +91,11 @@ function goToCheckout(e) {
     }
     if (cart.length === 0) {
         cartmsg.innerHTML = carterr;
-    } else {
+    }
+    else if (cart.length > 10) {
+        cartmsg.innerHTML = carterr2;
+    } 
+    else {
         window.location.href = "checkout.html";
     }
 }

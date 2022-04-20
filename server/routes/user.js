@@ -1,3 +1,4 @@
+
 const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
@@ -29,5 +30,15 @@ router.get('/', (req, res) => {
     }
 })
 
-module.exports = router; 
+.delete('/delete', (req, res) => {
+    try {
+        User.deleteUser(req.body.userId);
+        res.send({success: 'User deleted'});
+    } catch(error) {
+        res.status(401).send({message: error.message});
+    }
+})
+
+
+module.exports = router;
 

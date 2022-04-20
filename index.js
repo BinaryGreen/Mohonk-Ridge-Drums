@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 
 const userRoutes = require("./server/routes/user");
+const orderRoutes = require("./server/routes/order");
 
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));

@@ -40,7 +40,7 @@ function register(user) {
     if(e.length > 0) throw Error ('Email already exists');
 
     const newUser = {
-        userId: users[user.length - 1].user.Id + 1,
+        userId: users[users.length - 1].userId + 1,
         email: user.email,
         fname: user.fname,
         lname: user.lname,
@@ -50,11 +50,18 @@ function register(user) {
         phone: user.phone
     }
     users.push(newUser);
+    console.log(users);
     return newUser;
+}
+
+function deleteUser(userId) {
+    let i = users.map((user) => user.userId).indexOf(userId);
+    users.splice(i, 1);
+    console.log(users);
 }
 
 function userExists(email) {
     return users.filter((e) => e.email === email);
 }
 
-module.exports = { getUsers, login, register };
+module.exports = { getUsers, login, register, deleteUser };
