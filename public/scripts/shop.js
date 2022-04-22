@@ -77,8 +77,12 @@ function addDrum() {
 
 let nextbutton = document.getElementById('nextbutton');
 let tocart = document.getElementById('tocart');
-const carterr = 'There must be at least one drum in the cart.';
-const carterr2 = 'Maximum of 10 items exceeded. Please remove item(s) from cart.'
+
+const carterr = [
+    'There must be at least one item in the cart.',
+    'Maximum of 10 items exceeded. Please remove item(s) from cart.',
+    'You must be logged in to check out.'
+]
 
 if (nextbutton) nextbutton.addEventListener('click', goToCheckout);
 
@@ -87,14 +91,14 @@ function goToCheckout(e) {
     cartmsg.innerHTML = '';
 
     if (!localStorage.getItem('user')) {
-        window.location.href = "loginor.html"
+        cartmsg.innerHTML = carterr[2];
     }
-    if (cart.length === 0) {
-        cartmsg.innerHTML = carterr;
+    else if (cart.length === 0) {
+        cartmsg.innerHTML = carterr[0];
     }
     else if (cart.length > 10) {
-        cartmsg.innerHTML = carterr2;
-    } 
+        cartmsg.innerHTML = carterr[1];
+    }
     else {
         window.location.href = "checkout.html";
     }
