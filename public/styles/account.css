@@ -44,7 +44,7 @@ h1 {
 
 .content {
     padding-top: 50px;
-    padding-bottom: 200px;
+    padding-bottom: 250px;
     background: white;
     background-image: radial-gradient(black 1px, transparent 0);
     background-size: 50px 50px;
@@ -74,26 +74,81 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 a {
     text-decoration: none;
 }
 
-.accountlink {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    font-size: 24px;
+.accordion {
+    margin-left: 15px;
+    padding: 5px;
+    padding: 15px;
+    font-size: 22px;
     text-decoration: none;
     color: black;
+    width: 97%;
+    text-align: left;
+    border: none;
+    background-color: rgb(216, 216, 216);
 }
 
-.accountlink:hover {
-    text-decoration: underline;
+.accordion:nth-child(1) {
+    margin-top: 15px;
 }
 
-#logoutbutton, #deleteaccount {
+.accordion:nth-child(2) {
+    margin-bottom: 15px;
+}
+
+.accordion:hover {
+    background-color: rgb(192, 192, 192)
+}
+
+#editaccount {
+    margin: 15px;
+    background-color: white;
+    display: none;
+    width: 600px;
+}
+
+label {
+    display: inline-block;
+    text-align: right;
+    width: 100px;
+}
+
+input {
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    border: 1px solid steelblue;
+    display: inline-block;
+    width: 250px;
+}
+
+.updatebutton {
+    border-radius: 5px;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 0 5px grey;
+    background-color: steelblue;
+    border: 2px solid steelblue;
+    margin: 10px;
+}
+
+.updatebutton:hover {
+    background-color: rgba(70, 130, 180, 15%);
+    color: steelblue;
+}
+
+#logoutbutton, #deletebutton {
     border-radius: 5px;
     color: white;
     text-decoration: none;
@@ -101,7 +156,7 @@ a {
     transition-duration: 0.4s;
     cursor: pointer;
     box-shadow: 0 0 5px black;
-    width: 100%;
+    width: 25%;
     margin-bottom: 25px;
     padding: 12px;
 }
@@ -109,6 +164,8 @@ a {
 #logoutbutton {
     background-color: steelblue;
     border: 2px solid steelblue;
+    margin: auto;
+    margin-top: 15px;
 }
 
 #logoutbutton:hover {
@@ -116,14 +173,22 @@ a {
     color: steelblue;
 }
 
-#deleteaccount {
+#deletebutton {
     background-color: rgb(189, 68, 68);
     border: 2px solid rgb(189, 68, 68);
+    margin: auto;
+    margin-bottom: 15px;
 }
 
-#deleteaccount:hover {
+#deletebutton:hover {
     background-color: rgba(138, 49, 49, 15%);
     color: rgb(189, 68, 68);
+}
+
+#accounterror {
+    color: red;
+    font-weight: bold;
+    padding-bottom: 6px;
 }
 
 .footer {
@@ -151,3 +216,20 @@ a {
     justify-content: center;
     align-items: center;
 }
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
+  #togglepassword {
+      background-color: white;
+      border: none;
+      position: relative;
+      top: 7px;
+      right: 5px;
+      cursor: pointer;
+  }
