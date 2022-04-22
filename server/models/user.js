@@ -27,6 +27,11 @@ const users = [
 
 let getUsers = () => users;
 
+function getUser(userId) {
+    const user = users.filter((u) => u.userId === userId);
+    return user;
+}
+
 async function login(email, password) {
     const user = users.filter((e) => e.email === email);
     if(!user[0]) throw Error('Email not found');
@@ -64,4 +69,4 @@ function userExists(email) {
     return users.filter((e) => e.email === email);
 }
 
-module.exports = { getUsers, login, register, deleteUser };
+module.exports = { getUsers, login, register, deleteUser, getUser };
