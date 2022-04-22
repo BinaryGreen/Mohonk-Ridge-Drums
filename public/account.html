@@ -16,6 +16,10 @@
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet"
     >
+    <link 
+        rel="stylesheet" 
+        href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" 
+    />
 </head>
 <body>
     <div class="navbar">
@@ -31,12 +35,40 @@
     <div class="content">
         <p class="headingtext"><span class="headingspan">Account</span></p>
         <div class="accountbox">
-            <a href="orderhistory.html"><p class="accountlink">Order History</p></a>
-            <a href="editaccount.html"><p class="accountlink">Edit Account</p></a>
-            <div class="buttons">
-                <button type="button" id="logoutbutton">Logout</button>
-                <button type="button" id="deleteaccount">Delete Account</button>
+            <button type="button" id="updatebutton" class="accordion">Edit Account</button>
+            <div class="panel">
+                <form id="editaccount">
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname" id="fname" placeholder="First Name" required> <br>
+                    <label for="lname">Last Name</label>
+                    <input type="text" name="lname" id="lname" placeholder="Last Name" required> <br>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required> <br>
+                    <label for="pswd">Password</label>
+                    <input type="password" name="pswd" id="pswd" placeholder="Password" required> 
+                    <button type="button" id="togglepassword">
+                        <span class="material-symbols-outlined">
+                            visibility
+                        </span>
+                    </button> <br>
+                    <label for="bdate">Birthdate</label>
+                    <input type="date" name="bdate" id="bdate" required> <br>
+                    <label for="phone">Phone #</label>
+                    <input 
+                        type="tel" name="phone" id="phone"
+                        placeholder="XXX-XXX-XXXX" required> <br>
+                    <label for="address">Address</label>
+                    <input 
+                    type="text" id="address" placeholder="Street Address, City, State, Postal"
+                    required> <br>
+                    <button class="updatebutton" type="button">Update Account</button>
+                </form>
             </div>
+            <button type="button" id="historybutton" class="accordion">Order History</button>
+            <button type="button" id="logoutbutton">Logout</button> <br>
+            <button type="button" id="deletebutton">Delete Account</button>
+        </div>
+            <p id="accounterror"></p>
         </div>
     </div>
     <div class="footer">
