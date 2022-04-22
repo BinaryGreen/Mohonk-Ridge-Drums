@@ -54,6 +54,11 @@ function toggleEdit() {
                 address.value = data[0].address;
             }
         })
+        .catch((error) => {
+            const errText = error.message;
+            document.getElementById('updateError').innerHTML = errText;
+            console.log(`Error! ${errText}`);
+        })
     }
 }
 
