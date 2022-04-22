@@ -1,3 +1,5 @@
+// todo: remove postData and implement fetching with fetchData
+
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {
         method: 'POST',
@@ -29,8 +31,6 @@ function removeCurrentUser() {
 function getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));
 }
-
-// logout button listener on account.html
 
 function logout() {
     removeCurrentUser();
@@ -112,4 +112,4 @@ function register (e) {
     });
 }
 
-export default logout;
+export { logout, getCurrentUser };
