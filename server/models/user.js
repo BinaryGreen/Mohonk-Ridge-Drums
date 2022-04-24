@@ -1,3 +1,5 @@
+const res = require("express/lib/response");
+
 const users = [
     {
         userId: 12345,
@@ -47,8 +49,10 @@ function register(user) {
     const newUser = {
         userId: users[users.length - 1].userId + 1,
         email: user.email,
-        fname: user.fname,
-        lname: user.lname,
+        name: {
+            fname: user.fname,
+            lname: user.lname
+        },
         address: user.address,
         password: user.password,
         birthdate: user.birthdate,
@@ -69,4 +73,16 @@ function userExists(email) {
     return users.filter((e) => e.email === email);
 }
 
-module.exports = { getUsers, login, register, deleteUser, getUser };
+function update(info) {
+    const user = users.find((u) => u.userId === info.userId);
+    user.email = info.newInfo.email;
+    user.password = info.newInfo.password;
+    user.name.fname = info.newInfo.fname;
+    user.name.lname = info.newInfo.lname;
+    user.address = info.newInfo.address;
+    user.phone = info.newInfo.phone;
+    user.birthdate = info.newInfo.birthdate;
+    return user;
+}
+
+module.exports = { getUsers, login, register, deleteUser, getUser, update };

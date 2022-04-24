@@ -1,5 +1,17 @@
-import { logout, getCurrentUser } from './login.js'
+import { logout, setCurrentUser, getCurrentUser } from './login.js'
 import fetchData from './fetchdata.js';
+
+class User {
+    constructor(fname, lname, email, password, birthdate, phone, address) { // new account
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.birthdate = birthdate;
+        this.phone = phone;
+        this.address = address;
+    }
+}
 
 let user = getCurrentUser();
 
@@ -26,9 +38,9 @@ function deleteAccount() {
     }
 }
 
-const updateButton = document.getElementById('updatebutton');
+const openupdate = document.getElementById('openupdate');
 const editForm = document.getElementById('editaccount');
-if (updateButton) updateButton.addEventListener('click', toggleEdit);
+if (openupdate) openupdate.addEventListener('click', toggleEdit);
 
 function toggleEdit() {
     editForm.style.display = ! editForm.style.display ? 'block' : '';
@@ -60,6 +72,34 @@ function toggleEdit() {
             console.log(`Error! ${errText}`);
         })
     }
+}
+
+const updateButton = document.getElementById('updatebutton');
+if (updateButton) updateButton.addEventListener('click', updateAccount);
+
+function updateAccount() {
+
+    let fname = document.getElementById('fname').value;
+    let lname = document.getElementById('lname').value;
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('pswd').value;
+    let birthdate = document.getElementById('bdate').value;
+    let phone = document.getElementById('phone').value;
+    let address = document.getElementById('address').value;
+
+    const newInfo = new User(fname, lname, email, password, birthdate, phone, address);
+
+    fetchData('/users/update', {newInfo, userId: user.userId}, "PUT")
+    .then((data) => {
+        if(!data.message) {
+            setCurrentUser(data);
+        }
+    })
+    .catch((error) => {
+        const errText = error.message;
+        document.getElementById('updateError').innerHTML = errText;
+        console.log(`Error! ${errText}`);
+    })
 }
 
 const toggleButton = document.getElementById('togglepassword');

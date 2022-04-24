@@ -112,4 +112,4 @@ function register (e) {
     });
 }
 
-export { logout, getCurrentUser };
+export { logout, getCurrentUser, setCurrentUser };

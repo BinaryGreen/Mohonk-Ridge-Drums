@@ -7,8 +7,8 @@ router.get('/', (req, res) => {
     try {
         const users = User.getUsers();
         res.send(users);
-    } catch (err) {
-        res.status(401).send({message: err.message})
+    } catch (error) {
+        res.status(401).send({message: error.message})
     }
 })
 
@@ -16,8 +16,17 @@ router.get('/', (req, res) => {
     try {
         const user = User.getUser(req.body.userId);
         res.send(user);
-    } catch (err) {
-        res.status(401).send({message: err.message})
+    } catch (error) {
+        res.status(401).send({message: error.message})
+    }
+})
+
+.put('/update', (req, res) => {
+    try {
+        const user = User.update(req.body);
+        res.send(user);
+    } catch (error) {
+        res.status(401).send({message: error.message})
     }
 })
 
