@@ -128,19 +128,26 @@ input {
     width: 250px;
 }
 
-#orderlist {
-    margin: 15px;
-    background-color: grey;
-    display: none;
-    width: 300px;
-    padding: 30px;
-}
-
 .singleOrder {
     background-color: white;
     border-radius: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.singleOrder {
+    margin: 12px;
+}
+
+hr {
+    color: black;
+    width: 300px;
+}
+
+.orderheading {
+    padding: 0;
+    color: black;
+    font-weight: 150;
 }
 
 #updateError {

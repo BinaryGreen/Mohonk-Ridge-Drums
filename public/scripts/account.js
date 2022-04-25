@@ -87,23 +87,28 @@ function toggleHistory() {
         .then(data => {
             data.forEach(order => {
 
-                let singleOrder = document.createElement('div');
-                singleOrder.className = 'singleOrder';
-                let orderContent = document.createElement('p');
-
-                let string = document.createTextNode(
-                    `
-                    Order: ${order.orderId}
-                    Items: ${order.items.forEach(i => {
-                        `Material: ${i.material}`
-                        console.log(i.material);
+                let html = 
+                `
+                <div class="singleOrder">
+                    <h1 class="orderheading">Order # ${order.orderId}</h1> <hr><br>
+                    ${order.items.map(i => {
+                        return (
+                            `
+                                <h2 class="drumheading">Drum # ${i.itemId}:</h2>
+                                <p class="item">Material: ${i.material}</p>
+                                <p class="item">Construction: ${i.construction}</p>
+                                <p class="item">Dimensions: ${i.diameter} x ${i.depth} x ${i.thickness}</p>
+                                <p class="item">Finish: ${i.finish}</p>
+                                <p class="item">Hardware: ${i.hardware}</p>
+                                <p class="item">Price: $${i.price}</p>
+                            `
+                        )
                     })}
-                    Grand Total: ${order.total}
-                    `
-                );
-                    orderContent.appendChild(string);
-                    singleOrder.appendChild(orderContent);
-                    orderList.append(singleOrder);
+                    <hr>
+                    <p class="total">Total: $${order.total}</p>
+                </div>
+                `
+                orderList.insertAdjacentHTML('afterend', html);
 
             })
         })
