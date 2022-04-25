@@ -1,5 +1,3 @@
-const res = require("express/lib/response");
-
 const users = [
     {
         userId: 12345,
@@ -74,7 +72,7 @@ function userExists(email) {
 }
 
 function update(info) {
-    const user = users.find((u) => u.userId === info.userId);
+    let user = users.find((u) => u.userId === info.userId);
     user.email = info.newInfo.email;
     user.password = info.newInfo.password;
     user.name.fname = info.newInfo.fname;

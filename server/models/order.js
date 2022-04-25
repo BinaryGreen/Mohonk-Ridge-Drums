@@ -1,6 +1,6 @@
 const orders = [
     {
-        orderId: 653,
+        orderId: 220,
         orderedBy: 12345,
         items: [
             {
@@ -11,7 +11,8 @@ const orders = [
                 depth: 4,
                 thickness: 4,
                 finish: 'Green Sparkle',
-                hardware: 'Satin Chrome'
+                hardware: 'Satin Chrome',
+                price: 350
             },
             {
                 itemId: 2,
@@ -21,11 +22,31 @@ const orders = [
                 depth: 3.5,
                 thickness: 3.5,
                 finish: 'Orange',
-                hardware: 'Brass'
+                hardware: 'Brass',
+                price: 300
             }
         ],
         address: '123 Main Street, New Paltz, New York 12561',
-        price: 650
+        total: 650
+    },
+    {
+        orderId: 221,
+        orderedBy: 12345,
+        items: [
+            {
+                itemId: 1,
+                material: 'Birch',
+                construction: 'Segment',
+                diameter: 14,
+                depth: 3.9,
+                thickness: 3.7,
+                finish: 'Black Sparkle',
+                hardware: 'Chrome',
+                price: 460
+            },
+        ],
+        address: '123 Main Street, New Paltz, New York 12561',
+        total: 460
     },
     {
         orderId: 222,
@@ -39,28 +60,20 @@ const orders = [
                 depth: 4,
                 thickness: 3.5,
                 finish: 'Shell Material',
-                hardware: 'Chrome'
+                hardware: 'Chrome',
+                price: 300
             }
         ],
         address: '60 West Boulevard, Coffeeville, New York, 03045',
-        price: 300
+        total: 300
     }
 ];
 
-let getOrders = () => orders;
+const getOrders = () => orders;
 
-function order(order) {
-
-    const newOrder = {
-        orderId: orders[orders.length - 1].orderId + 1,
-        orderedBy: localStorage.getItem('user').userId,
-        items: [
-
-        ],
-        address: localStorage.getItem('user').address,
-        price: null
-    }
-
+function getUserOrders(userId) {
+    const orderList = orders.filter((o) => o.orderedBy === userId);
+    return orderList;
 }
 
-module.exports = { getOrders };
+module.exports = { getOrders, getUserOrders };

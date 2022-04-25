@@ -74,6 +74,49 @@ function toggleEdit() {
     }
 }
 
+const openhistory = document.getElementById('openhistory');
+const orderList = document.getElementById('orderlist');
+if (openhistory) openhistory.addEventListener('click', toggleHistory);
+
+function toggleHistory() {
+
+    orderList.style.display = ! orderList.style.display ? 'block' : ''; 
+
+    if (orderList.style.display === 'block') {
+        fetchData('/orders/list', {userId: user.userId}, "POST")
+        .then(data => {
+            data.forEach(order => {
+
+                let singleOrder = document.createElement('div');
+                singleOrder.className = 'singleOrder';
+                let orderContent = document.createElement('p');
+
+                let string = document.createTextNode(
+                    `
+                    Order: ${order.orderId}
+                    Items: ${order.items.forEach(i => {
+                        `Material: ${i.material}`
+                        console.log(i.material);
+                    })}
+                    Grand Total: ${order.total}
+                    `
+                );
+                    orderContent.appendChild(string);
+                    singleOrder.appendChild(orderContent);
+                    orderList.append(singleOrder);
+
+            })
+        })
+    }
+
+    if (orderList.style.display === '') {
+        while (orderList.firstChild) {
+            orderList.removeChild(orderList.firstChild);
+        }
+    }
+
+}
+
 const updateButton = document.getElementById('updatebutton');
 if (updateButton) updateButton.addEventListener('click', updateAccount);
 
@@ -113,5 +156,3 @@ function togglePassword() {
         password.type = 'password';
     }
 }
-
-// todo: fetch PUT to update user info
