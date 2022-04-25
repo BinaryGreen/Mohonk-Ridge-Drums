@@ -90,21 +90,22 @@ function toggleHistory() {
                 let html = 
                 `
                 <div class="singleOrder">
-                    <h1 class="orderheading">Order # ${order.orderId}</h1> <hr><br>
+                    <h1 class="orderheading">Order # ${order.orderId}</h1> <hr>
                     ${order.items.map(i => {
                         return (
                             `
                                 <h2 class="drumheading">Drum # ${i.itemId}:</h2>
                                 <p class="item">Material: ${i.material}</p>
                                 <p class="item">Construction: ${i.construction}</p>
-                                <p class="item">Dimensions: ${i.diameter} x ${i.depth} x ${i.thickness}</p>
+                                <p class="item">Dimensions: ${i.diameter} x ${i.depth} x ${i.thickness} in.</p>
                                 <p class="item">Finish: ${i.finish}</p>
                                 <p class="item">Hardware: ${i.hardware}</p>
                                 <p class="item">Price: $${i.price}</p>
                             `
                         )
-                    })}
+                    }).join(' ')}
                     <hr>
+                    <p class="item">Shipping Address: ${order.address}</p>
                     <p class="total">Total: $${order.total}</p>
                 </div>
                 `

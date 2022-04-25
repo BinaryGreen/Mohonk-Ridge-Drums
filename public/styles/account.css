@@ -131,29 +131,50 @@ input {
 .singleOrder {
     background-color: white;
     border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 12px;
+    margin-bottom: 7px;
+    width: 600px;
+    border-radius: 5px;
 }
 
-.singleOrder {
+.drumheading {
+    font-weight: 150;
     margin: 12px;
 }
 
 hr {
     color: black;
     width: 300px;
+    margin: 7px;
+}
+
+.itemdivider {
+    width: 150px;
+    margin-left: 12px;
 }
 
 .orderheading {
     padding: 0;
     color: black;
     font-weight: 150;
+    margin: 12px;
+    margin-left: 7px;
+    font-size: 28px;
+}
+
+.item {
+    margin-left: 12px;
 }
 
 #updateError {
     color: red;
     font-weight: bold;
     padding-bottom: 6px;
+}
+
+.total {
+    margin-left: 12px;
+    padding-bottom: 7px;
 }
 
 .updatebutton {
