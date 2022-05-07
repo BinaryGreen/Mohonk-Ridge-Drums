@@ -42,7 +42,7 @@ class User {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
-        this.password = password; // add password checker function
+        this.password = password;
         this.birthdate = birthdate;
         this.phone = phone;
         this.address = address;

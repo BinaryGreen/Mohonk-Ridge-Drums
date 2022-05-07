@@ -1,3 +1,5 @@
+// unused
+
 const express = require('express');
 const Employee = require('../models/employee');
 const router = express.Router();
