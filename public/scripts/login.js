@@ -1,4 +1,5 @@
 // todo: remove postData and implement fetching with fetchData
+import fetchData from './fetchdata.js';
 
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {
@@ -89,19 +90,11 @@ function register (e) {
 
     const user = new User(fname, lname, email, password, birthdate, phone, address);
 
-    postData('http://localhost:3000/users/register', {
-        email: user.email,
-        fname: user.fname,
-        lname: user.lname,
-        password: user.password,
-        birthdate: user.birthdate,
-        phone: user.phone,
-        address: user.address
-    })
+    fetchData('/users/register', user, "POST")
     .then((data) => {
         if(!data.message) {
             setCurrentUser(data);
-            window.location.href="account.html";
+            window.location.href = "shop.html";
         }
     })
     .catch((error) => {
