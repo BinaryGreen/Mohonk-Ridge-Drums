@@ -2,7 +2,7 @@ import { logout, setCurrentUser, getCurrentUser } from './login.js'
 import fetchData from './fetchdata.js';
 
 class User {
-    constructor(fname, lname, email, password, birthdate, phone, address) { // new account
+    constructor(fname, lname, email, password, birthdate, phone, address) { // new account info
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -23,7 +23,7 @@ if (deleteButton) deleteButton.addEventListener('click', deleteAccount);
 
 function deleteAccount() {
     if(confirm('Are you sure you want to delete your account?')) {
-        fetchData('/users/delete', {userId: user.userId}, "DELETE")
+        fetchData('/users/delete', {userId: user.user_id}, "DELETE")
         .then((data) => {
             if(!data.message) {
                 console.log(data.success);
@@ -54,16 +54,16 @@ function toggleEdit() {
     const address = document.getElementById('address')
 
     if (editForm.style.display === 'block') {
-        fetchData('/users/edit', {userId: user.userId}, "POST")
+        fetchData('/users/edit', {userId: user.user_id}, "POST")
         .then((data) => {
             if(!data.message) {
-                fname.value = data[0].name.fname;
-                lname.value = data[0].name.lname;
-                email.value = data[0].email;
-                password.value = data[0].password;
-                birthdate.value = data[0].birthdate;
-                phone.value = data[0].phone;
-                address.value = data[0].address;
+                fname.value = data[0].user_firstname;
+                lname.value = data[0].user_lastname;
+                email.value = data[0].user_email;
+                password.value = data[0].user_password;
+                birthdate.value = data[0].user_birthdate;
+                phone.value = data[0].user_phone;
+                address.value = data[0].user_address;
             }
         })
         .catch((error) => {
@@ -83,35 +83,46 @@ function toggleHistory() {
     orderList.style.display = ! orderList.style.display ? 'block' : ''; 
 
     if (orderList.style.display === 'block') {
-        fetchData('/orders/list', {userId: user.userId}, "POST")
+        fetchData('/orders/list', {userId: user.user_id}, "POST")
         .then(data => {
+            console.log(data);
             data.forEach(order => {
 
                 let html = 
                 `
                 <div class="singleOrder">
-                    <h1 class="orderheading">Order # ${order.orderId}</h1> <hr>
+                    <h1 class="orderheading">Order # ${order.order_id}</h1> <hr>
                     ${order.items.map(i => {
                         return (
                             `
-                                <h2 class="drumheading">Drum # ${i.itemId}:</h2>
-                                <p class="item">Material: ${i.material}</p>
-                                <p class="item">Construction: ${i.construction}</p>
-                                <p class="item">Dimensions: ${i.diameter} x ${i.depth} x ${i.thickness} in.</p>
-                                <p class="item">Finish: ${i.finish}</p>
-                                <p class="item">Hardware: ${i.hardware}</p>
-                                <p class="item">Price: $${i.price}</p>
+                                <h2 class="drumheading">Drum # ${i.item_id}:</h2>
+                                <p class="item">Material: ${i.item_material}</p>
+                                <p class="item">Construction: ${i.item_construction}</p>
+                                <p class="item">Dimensions: ${i.item_diameter} x ${i.item_depth} x ${i.item_thickness} in.</p>
+                                <p class="item">Finish: ${i.item_finish}</p>
+                                <p class="item">Hardware: ${i.item_hardware}</p>
+                                <p class="item">Price: $${i.item_price}</p>
                             `
                         )
                     }).join(' ')}
                     <hr>
-                    <p class="item">Shipping Address: ${order.address}</p>
-                    <p class="total">Total: $${order.total}</p>
+                    <p class="item">Date Ordered: ${order.order_date}</p>
+                    <p class="item">Shipping Address: ${order.order_address}</p>
+                    <p class="total">Total: $${order.order_total}</p>
                 </div>
                 `
                 orderList.insertAdjacentHTML('afterend', html);
 
             })
+            if (data.length === 0) {
+                let noOrders = 
+                `
+                    <div class="singleOrder">
+                        <p id="noOrders">You have no orders. Order your first drum at our <b><a href="shop.html">shop</a></b>.</p>
+                    </div>
+                `
+                orderList.insertAdjacentHTML('afterend', noOrders);
+            }
         })
     }
 
@@ -138,10 +149,11 @@ function updateAccount() {
 
     const newInfo = new User(fname, lname, email, password, birthdate, phone, address);
 
-    fetchData('/users/update', {newInfo, userId: user.userId}, "PUT")
+    fetchData('/users/update', {newInfo, userId: user.user_id}, "PUT")
     .then((data) => {
         if(!data.message) {
             setCurrentUser(data);
+            alert('Account info updated!');
         }
     })
     .catch((error) => {

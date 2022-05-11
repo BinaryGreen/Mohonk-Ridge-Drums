@@ -162,6 +162,10 @@ hr {
     font-size: 28px;
 }
 
+#noOrders {
+    margin: 15px;
+}
+
 .item {
     margin-left: 12px;
 }

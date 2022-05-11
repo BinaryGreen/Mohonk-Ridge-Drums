@@ -2,27 +2,27 @@ const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const users = User.getUsers();
+        const users = await User.getUsers();
         res.send(users);
     } catch (error) {
         res.status(401).send({message: error.message})
     }
 })
 
-.post('/edit', (req, res) => {
+.post('/edit', async (req, res) => {
     try {
-        const user = User.getUser(req.body.userId);
+        const user = await User.getUser(req.body);
         res.send(user);
     } catch (error) {
         res.status(401).send({message: error.message})
     }
 })
 
-.put('/update', (req, res) => {
+.put('/update', async (req, res) => {
     try {
-        const user = User.update(req.body);
+        const user = await User.update(req.body);
         res.send(user);
     } catch (error) {
         res.status(401).send({message: error.message})
@@ -32,25 +32,24 @@ router.get('/', (req, res) => {
 .post('/login', async (req, res) => {
     try {
         const user = await User.login(req.body.email, req.body.password);
-        res.send({...user, password: undefined});
+        res.send({...user, user_password: undefined});
     } catch (error) {
         res.status(401).send({message: error.message})
     }
 })
 
-.post('/register', (req, res) => {
+.post('/register', async (req, res) => {
     try {
-        const user = User.register(req.body);
-        console.log(user);
-        res.send({...user, password: undefined})
+        const user = await User.register(req.body);
+        res.send({...user, user_password: undefined})
     } catch(error) {
         res.status(401).send({message: error.message})
     }
 })
 
-.delete('/delete', (req, res) => {
+.delete('/delete', async (req, res) => {
     try {
-        User.deleteUser(req.body.userId);
+        await User.deleteUser(req.body.userId);
         res.send({success: 'User deleted'});
     } catch(error) {
         res.status(401).send({message: error.message});

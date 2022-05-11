@@ -2,18 +2,18 @@ const express = require('express');
 const Order = require('../models/order');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const orders = Order.getOrders();
+        const orders = await Order.getOrders();
         res.send(orders);
     } catch (error) {
         res.status(401).send({message: error.message})
     }
 })
 
-.post('/list', (req, res) => {
+.post('/list', async (req, res) => {
     try {
-        const orders = Order.getUserOrders(req.body.userId);
+        const orders = await Order.getUserOrders(req.body);
         res.send(orders);
     } catch (error) {
         res.status(401).send({message: error.message});

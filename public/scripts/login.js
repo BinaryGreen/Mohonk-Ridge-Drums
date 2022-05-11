@@ -94,7 +94,7 @@ function register (e) {
     .then((data) => {
         if(!data.message) {
             setCurrentUser(data);
-            window.location.href = "shop.html";
+            window.location.href = "account.html";
         }
     })
     .catch((error) => {
