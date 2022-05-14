@@ -76,10 +76,10 @@ function toggleEdit() {
 
 const openhistory = document.getElementById('openhistory');
 const orderList = document.getElementById('orderlist');
+const orderBox = document.getElementById('orders');
 if (openhistory) openhistory.addEventListener('click', toggleHistory);
 
 function toggleHistory() {
-
     orderList.style.display = ! orderList.style.display ? 'block' : ''; 
 
     if (orderList.style.display === 'block') {
@@ -87,15 +87,14 @@ function toggleHistory() {
         .then(data => {
             console.log(data);
             data.forEach(order => {
-
                 let html = 
                 `
                 <div class="singleOrder">
-                    <h1 class="orderheading">Order # ${order.order_id}</h1> <hr>
-                    ${order.items.map(i => {
+                    <h1 class="orderheading">Order # ${order.orderId}</h1> <hr>
+                    ${order.allProducts.map((i, drumId) => {
                         return (
                             `
-                                <h2 class="drumheading">Drum # ${i.item_id}:</h2>
+                                <h2 class="drumheading">Drum # ${drumId + 1}:</h2>
                                 <p class="item">Material: ${i.item_material}</p>
                                 <p class="item">Construction: ${i.item_construction}</p>
                                 <p class="item">Dimensions: ${i.item_diameter} x ${i.item_depth} x ${i.item_thickness} in.</p>
@@ -106,12 +105,12 @@ function toggleHistory() {
                         )
                     }).join(' ')}
                     <hr>
-                    <p class="item">Date Ordered: ${order.order_date}</p>
-                    <p class="item">Shipping Address: ${order.order_address}</p>
-                    <p class="total">Total: $${order.order_total}</p>
+                    <p class="item">Date Ordered: ${order.date}</p>
+                    <p class="item">Shipping Address: ${order.address}</p>
+                    <p class="total">Total: $${order.total}</p>
                 </div>
                 `
-                orderList.insertAdjacentHTML('afterend', html);
+                orderBox.insertAdjacentHTML('afterend', html);
 
             })
             if (data.length === 0) {
@@ -123,13 +122,15 @@ function toggleHistory() {
                 `
                 orderList.insertAdjacentHTML('afterend', noOrders);
             }
+
         })
     }
 
     if (orderList.style.display === '') {
-        while (orderList.firstChild) {
-            orderList.removeChild(orderList.firstChild);
-        }
+        const child = document.querySelectorAll('.singleOrder');
+        child.forEach(c => {
+            c.remove();
+        })
     }
 
 }

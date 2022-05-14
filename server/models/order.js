@@ -78,8 +78,7 @@ async function createOrderTable() {
         order_address VARCHAR(255),
         order_date VARCHAR(255),
         order_total NUMERIC,
-        CONSTRAINT order_pk PRIMARY KEY(order_id),
-        CONSTRAINT user_fk FOREIGN KEY(user_id) REFERENCES users(user_id)
+        CONSTRAINT order_pk PRIMARY KEY(order_id)
     )`;
     await con.query(sql);
 }
@@ -96,8 +95,7 @@ async function createItemTable() {
         item_finish VARCHAR(255),
         item_hardware VARCHAR(255),
         item_price NUMERIC,
-        CONSTRAINT item_pk PRIMARY KEY (item_id),
-        CONSTRAINT order_fk FOREIGN KEY(order_id) REFERENCES orders(order_id)
+        CONSTRAINT item_pk PRIMARY KEY (item_id)
     )`;
     await con.query(sql);
 }
@@ -105,7 +103,8 @@ async function createItemTable() {
 async function exampleOrder() {
     const check = `SELECT * FROM orders WHERE order_id = "3"`;
     let sql = `INSERT INTO orders (order_id, user_id, order_address, order_date, order_total)
-    VALUES ("3", "6", "123 Main Street, New Paltz, New York 12561", "2022-02-12", "650")
+    VALUES ("3", "6", "123 Main Street, New Paltz, New York 12561", "2022-02-12", "650"),
+           ("4", "6", "123 Main Street, New Paltz, New York 12561", "2022-05-01", "290")
     `;
     const arr = await con.query(check);
     if (arr.length === 0) {
@@ -119,7 +118,9 @@ async function exampleItem() {
         INSERT INTO orderitems (
             order_id, item_id, item_material, item_construction, item_diameter, item_depth, item_thickness, item_finish, item_hardware, item_price
         ) VALUES ("3", "1", "Beech", "Stave", "12", "4", "4", "Green Sparkle", "Satin Chrome", "350"),
-                 ("3", "2", "Oak", "Steambent", "8", "3.5", "3.5", "Orange", "Brass", "300")`;
+                 ("4", "2", "Oak", "Steambent", "8", "3.5", "3.5", "Orange", "Brass", "300"),
+                 ("4", "3", "Maple", "Segment", "13", "3.5", "3.5", "Shell Material", "Chrome", "290")
+        `;
     const arr2 = await con.query(check);
     if (arr2.length === 0) {
         await con.query(sql);
@@ -137,10 +138,29 @@ const getOrders = async () => {
 }
 
 async function getUserOrders(user) {
-    console.log(user.userId);
     const sql = `SELECT * FROM orders WHERE user_id = "${user.userId}"`;
     const orders = await con.query(sql);
     return orders;
 }
 
-module.exports = { getOrders, getUserOrders };
+async function getProducts(user_id) {
+    const orders = await getUserOrders(user_id);
+    const allOrders = []
+    for(let i = 0; i<orders.length; i++) {
+        const sql = `SELECT * FROM orderitems 
+            WHERE order_id = ${orders[i].order_id}
+        `
+        const products = await con.query(sql);
+        const singleOrder = {
+            orderId: orders[i].order_id,
+            address: orders[i].order_address,
+            date: orders[i].order_date,
+            total: orders[i].order_total,
+            allProducts: products
+        }
+     allOrders.push(singleOrder);
+    }
+    return allOrders;
+}
+
+module.exports = { getOrders, getUserOrders, getProducts };
