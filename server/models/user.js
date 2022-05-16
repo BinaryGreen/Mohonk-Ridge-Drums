@@ -1,32 +1,5 @@
 const con = require('./db_connect');
 
-const users = [
-    {
-        userId: 12345,
-        email: 'coder@gmail.com',
-        name: {
-            fname: 'Dan',
-            lname: 'Mango'
-        },
-        address: '123 Main Street, New Paltz, New York 12561',
-        password: 'banana',
-        birthdate: '2000-02-09',
-        phone: '123-456-7890'
-    },
-    {
-        userId: 67890,
-        email: 'coffee24@newpaltz.edu',
-        name: {
-            fname: 'Johnny',
-            lname: 'Espresso'
-        },
-        address: '60 West Boulevard, Coffeeville, New York, 03045',
-        password: 'ilikecoffee',
-        birthdate: '1975-07-15',
-        phone: '333-712-9140'
-    }
-];
-
 async function createTable() { 
     let sql = `CREATE TABLE IF NOT EXISTS users (
         user_id INT NOT NULL AUTO_INCREMENT,
