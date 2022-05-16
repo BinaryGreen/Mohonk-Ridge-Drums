@@ -104,8 +104,8 @@ async function createItemTable() {
 async function exampleOrder() {
     const check = `SELECT * FROM orders WHERE order_id = "3"`;
     let sql = `INSERT INTO orders (order_id, user_id, order_address, order_date, order_total)
-    VALUES ("3", "6", "123 Main Street, New Paltz, New York 12561", "2022-02-12", "650"),
-           ("4", "6", "123 Main Street, New Paltz, New York 12561", "2022-05-01", "290")
+    VALUES ("3", "1", "123 Main Street, New Paltz, New York 12561", "2022-02-12", "650"),
+           ("4", "1", "123 Main Street, New Paltz, New York 12561", "2022-05-01", "290")
     `;
     const arr = await con.query(check);
     if (arr.length === 0) {
@@ -168,7 +168,7 @@ async function placeOrder(info) {
     const sqlsum = `SELECT SUM(item_price) AS sum FROM cartitems
     WHERE user_id = "${info.userId}"`;
     const sum = await con.query(sqlsum);
-    
+
     const sqladdress = `SELECT user_address AS address FROM users WHERE user_id = "${info.userId}"`;
     const address = await con.query(sqladdress);
 
