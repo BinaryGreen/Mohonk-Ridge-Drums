@@ -1,25 +1,4 @@
-// todo: remove postData and implement fetching with fetchData
 import fetchData from './fetchdata.js';
-
-async function postData(url = '', data = {}) {
-    const response = await fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(data)
-    });
-    if(response.ok) {
-        return await response.json();
-    } else {
-        throw await response.json();
-    }
-}
 
 function setCurrentUser(user) {
     localStorage.setItem('user', JSON.stringify(user));
@@ -59,7 +38,7 @@ function login (e) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('pswd').value;
 
-    postData('http://localhost:3000/users/login', {email: email, password: password})
+    fetchData('/users/login', {email: email, password: password}, "POST")
     .then((data) => {
         if(!data.message) {
             setCurrentUser(data);

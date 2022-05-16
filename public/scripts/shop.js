@@ -1,3 +1,10 @@
+import { getCurrentUser } from './login.js'
+import fetchData from './fetchdata.js';
+
+let user = getCurrentUser();
+
+renderCart(); 
+
 let id = 10;
 
 class Drum {
@@ -15,9 +22,8 @@ class Drum {
 }
 
 let form = document.getElementById('drumForm');
-let drums = document.getElementById('drumlist');
+let drumlist = document.getElementById('drumlist');
 let errmsg = document.getElementById('errmsg');
-let cart = [];
 
 if (form) form.addEventListener('submit', checkDimensions);
 
@@ -51,56 +57,90 @@ function addDrum() {
 
     const drum = new Drum(material, construction, diameter, depth, thickness, finish, hardware);
 
-    // append drum properties to <p>, store inside individual <div>, append to overall <div>
-
-    let drumitem = document.createElement('div');
-    let drumitemcontent = document.createElement('p');
-
-    drumitem.className = 'drumitem';
-    drumitemcontent.className = 'drumitemcontent';
-
-    let string = document.createTextNode(
-        `
-        Material: ${drum.material}, 
-        Construction: ${drum.construction}, 
-        Size: ${drum.diameter} x ${drum.depth} x ${drum.thickness}, 
-        Finish: ${drum.finish}, 
-        Hardware: ${drum.hardware}
-        `
-    );
-    drumitemcontent.appendChild(string);
-    drumitem.appendChild(drumitemcontent);
-    drums.appendChild(drumitem);
-    cart.push(drum);
-    console.log(cart);
+    fetchData('/carts/add', {
+        uid: user.user_id,
+        material: drum.material,
+        construction: drum.construction,
+        diameter: drum.diameter,
+        depth: drum.depth,
+        thickness: drum.thickness,
+        finish: drum.finish,
+        hardware: drum.hardware
+    }, "POST")
+    .then(setTimeout(renderCart, 100)); // prevents renderCart from returning data without added drum
 }
 
 let nextbutton = document.getElementById('nextbutton');
-let tocart = document.getElementById('tocart');
+let cartmsg = document.getElementById('cartmsg');
+if (nextbutton) nextbutton.addEventListener('click', checkout);
 
-const carterr = [
-    'There must be at least one item in the cart.',
-    'Maximum of 10 items exceeded. Please remove item(s) from cart.',
-    'You must be logged in to check out.'
-]
-
-if (nextbutton) nextbutton.addEventListener('click', goToCheckout);
-
-function goToCheckout(e) {
+function checkout(e) {
     e.preventDefault();
     cartmsg.innerHTML = '';
 
+    fetchData('/carts/list', {userId: user.user_id}, "POST")
+    .then (data => {
+        if (data.length === 0) {
+            cartmsg.innerHTML = 'Cart must have at least one item.';
+        } else {
+            fetchData('/orders/place', {userId: user.user_id, cart: data}, "POST")
+            .then (() => {
+                alert('Order placed!');
+                window.location.href = 'index.html';
+            })
+        }
+    })
+}
+
+function renderCart() {
     if (!localStorage.getItem('user')) {
-        cartmsg.innerHTML = carterr[2];
-    }
-    else if (cart.length === 0) {
-        cartmsg.innerHTML = carterr[0];
-    }
-    else if (cart.length > 10) {
-        cartmsg.innerHTML = carterr[1];
+        alert('You must be logged in to use the shop.');
+        window.location.href = 'loginor.html';
     }
     else {
-        window.location.href = "checkout.html";
+        const child = document.querySelectorAll('.cartitem');
+        child.forEach(c => {
+            c.remove();
+        })
+        fetchData('/carts/list', {userId: user.user_id}, "POST")
+        .then(data => {
+            data.forEach((cart, drumId) => {
+                let html = 
+                `
+                <div class="cartitem" id=${cart.item_id}>
+                    <button class="deletebutton">x</button>
+                    <h1 class="itemheading">Drum # ${drumId + 1}</h1>
+                    <hr>
+                    <p class="item">Material: ${cart.item_material}</p>
+                    <p class="item">Construction: ${cart.item_construction}</p>
+                    <p class="item">Dimensions: ${cart.item_diameter} x ${cart.item_depth} x ${cart.item_thickness} in.</p>
+                    <p class="item">Finish: ${cart.item_finish}</p>
+                    <p class="item">Hardware: ${cart.item_hardware}</p>
+                    <p class="item">Price: $${cart.item_price}</p>
+                </div>
+                `
+                drumlist.insertAdjacentHTML('beforeend', html);
+            })
+        })
+        .then(() => {
+            const removeButton = document.querySelectorAll('.deletebutton');
+            for (let i = 0; i < removeButton.length; i++) {
+                if (removeButton[i]) removeButton[i].addEventListener('click', removeItem);
+            }
+        })
     }
+}
+
+
+
+function removeItem(e) {
+    let targetButton = e.target.parentElement;
+    const targetKey = targetButton.id;
+
+    fetchData('/carts/remove', {targetKey}, "DELETE")
+    .then(() => {
+        drumlist.removeChild(targetButton);
+        setTimeout(renderCart, 100);
+    })
 }
 

@@ -1,3 +1,4 @@
+const { format } = require('date-fns');
 const con = require('./db_connect');
 
 const orders = [
@@ -163,4 +164,45 @@ async function getProducts(user_id) {
     return allOrders;
 }
 
-module.exports = { getOrders, getUserOrders, getProducts };
+async function placeOrder(info) {
+    const sqlsum = `SELECT SUM(item_price) AS sum FROM cartitems
+    WHERE user_id = "${info.userId}"`;
+    const sum = await con.query(sqlsum);
+    
+    const sqladdress = `SELECT user_address AS address FROM users WHERE user_id = "${info.userId}"`;
+    const address = await con.query(sqladdress);
+
+    const d = new Date();
+    const orderDate = format(d, "yyyy-MM-dd");
+
+    const sqlorder = `INSERT INTO orders (
+        user_id, order_address, order_date, order_total)
+        VALUES ("${info.userId}", "${address[0].address}", "${orderDate}", "${sum[0].sum}")
+    `;
+    const newOrder = await con.query(sqlorder);
+
+    const sqlid = `SELECT MAX(order_id) AS maxid FROM orders WHERE user_id = "${info.userId}"`;
+    const oid = await con.query(sqlid);
+
+    for (let i = 0; i < info.cart.length; i++) {
+        let sqlitem = `INSERT INTO orderitems (
+            order_id, item_material, item_construction, item_diameter, item_depth, item_thickness, item_finish, item_hardware, item_price
+        ) VALUES (
+            "${oid[0].maxid}",
+            "${info.cart[i].item_material}",
+            "${info.cart[i].item_construction}",
+            "${info.cart[i].item_diameter}",
+            "${info.cart[i].item_depth}",
+            "${info.cart[i].item_thickness}",
+            "${info.cart[i].item_finish}",
+            "${info.cart[i].item_hardware}",
+            "${info.cart[i].item_price}"
+        )`;
+        await con.query(sqlitem);
+    }
+
+    const sqldel = `DELETE FROM cartitems WHERE user_id = "${info.userId}"`;
+    await con.query(sqldel);
+}
+
+module.exports = { getOrders, getUserOrders, getProducts, placeOrder };

@@ -85,7 +85,6 @@ function toggleHistory() {
     if (orderList.style.display === 'block') {
         fetchData('/orders/list', {userId: user.user_id}, "POST")
         .then(data => {
-            console.log(data);
             data.forEach(order => {
                 let html = 
                 `

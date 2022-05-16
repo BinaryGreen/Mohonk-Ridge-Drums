@@ -20,4 +20,13 @@ router.get('/', async (req, res) => {
     }
 })
 
+.post('/place', async (req, res) => {
+    try {
+        const orders = await Order.placeOrder(req.body);
+        res.send({success: 'Order placed'});
+    } catch (error) {
+        res.status(401).send({message: error.message});
+    }
+})
+
 module.exports = router;
