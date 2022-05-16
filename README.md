@@ -86,7 +86,7 @@ An example user and order has been provided in their respective model files. The
 
 ## Future Improvements & Issues
 
-I'm planning on rewriting the entire website in React, which would hopefully cut down the amount of code since the headers, footers and other buttons can be reused. As far as styling, I'd like to use either Bootstrap or Tailwind. 
+I'm planning on rewriting the entire website using React, which would hopefully cut down the amount of code since the headers, footers and other buttons can be reused. As far as styling, I'd like to use either Bootstrap or Tailwind. 
 
 As of now, a random price is generated for each item whenever a user adds an item to a cart. Due to time constraints I could not think of an individual price for every option. However, I will eventually make a database that will contain every option, and calculate prices based on drum shell dimensions.
 
